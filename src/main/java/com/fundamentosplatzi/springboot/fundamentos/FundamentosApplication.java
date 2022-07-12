@@ -1,12 +1,15 @@
 package com.fundamentosplatzi.springboot.fundamentos;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.fundamentosplatzi.springboot.fundamentos.bean.MyBean;
+import com.fundamentosplatzi.springboot.fundamentos.bean.MyBeanWithPropierties;
 import com.fundamentosplatzi.springboot.fundamentos.component.ComponentDependency;
+import com.fundamentosplatzi.springboot.fundamentos.pojo.UserPojo;
 
 @SpringBootApplication
 public class FundamentosApplication implements CommandLineRunner {
@@ -14,6 +17,12 @@ public class FundamentosApplication implements CommandLineRunner {
 	private ComponentDependency componentDependency;
 
 	private MyBean myBean;
+
+	@Autowired
+	private MyBeanWithPropierties myBeanWithPropierties;
+
+	@Autowired
+	private UserPojo userPojo;
 
 	public FundamentosApplication(@Qualifier("componentTwoImplement") ComponentDependency componentDependency, MyBean myBean) {
 		this.componentDependency = componentDependency;
@@ -24,10 +33,14 @@ public class FundamentosApplication implements CommandLineRunner {
 		SpringApplication.run(FundamentosApplication.class, args);
 	}
 
+
+
 	@Override
 	public void run(String... args) throws Exception {
 		componentDependency.saludar();
 		myBean.saludar();
+		System.out.println(myBeanWithPropierties.getCadena()); 
+		System.out.println(userPojo.getEmail());
 	}
 
 }
