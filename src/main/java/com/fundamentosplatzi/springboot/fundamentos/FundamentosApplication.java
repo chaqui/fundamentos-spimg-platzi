@@ -11,6 +11,8 @@ import com.fundamentosplatzi.springboot.fundamentos.bean.MyBeanWithPropierties;
 import com.fundamentosplatzi.springboot.fundamentos.component.ComponentDependency;
 import com.fundamentosplatzi.springboot.fundamentos.pojo.UserPojo;
 
+import lombok.extern.apachecommons.CommonsLog;
+@CommonsLog
 @SpringBootApplication
 public class FundamentosApplication implements CommandLineRunner {
 
@@ -39,8 +41,9 @@ public class FundamentosApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		componentDependency.saludar();
 		myBean.saludar();
-		System.out.println(myBeanWithPropierties.getCadena()); 
-		System.out.println(userPojo.getEmail());
+		log.info(myBeanWithPropierties.getCadena()); 
+		log.info(userPojo.getEmail());
+		log.error("Error de log");
 	}
 
 }
